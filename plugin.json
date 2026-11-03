@@ -1,0 +1,96 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "haystack-jobs",
+  "version": "1.0.0",
+  "description": "Search live jobs from employers' own careers sites in plain English, and see which employers reply to applications and how fast.",
+  "author": {
+    "name": "Haystack",
+    "email": "hello@haystackapp.io",
+    "url": "https://haystackapp.io"
+  },
+  "homepage": "https://haystackapp.io/mcp-server",
+  "repository": "https://github.com/haystackapp/haystack-mcp",
+  "keywords": ["jobs", "job search", "careers", "hiring", "remote jobs", "visa sponsorship", "auto apply"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Haystack Jobs",
+        "shortDescription": "Search live jobs and employers",
+        "longDescription": "Find live jobs in plain English and check what applying is like before you do.\n\nHaystack reads roles from employers' own careers sites across the US, UK, Canada, Australia, India and Europe, in every field, not only tech. Ask for a role, a city or remote work, and filter on what the advert says: no experience needed, no degree needed, visa sponsorship offered. Every job comes with its Haystack link.\n\nHaystack also answers what job boards can't: does this employer reply, how fast, and what will its application form ask? Those answers come from more than 1.3 million job applications sent through Haystack.\n\nWhen a job supports it, the result carries an Auto Apply link: Haystack's AI agent fills in and submits that employer's form for you.\n\nFree to use, with no sign-in.",
+        "developerName": "Haystack",
+        "category": "Productivity",
+        "capabilities": [
+          "Search live jobs by role, city, country and remote",
+          "Filter on no experience, no degree and visa sponsorship",
+          "Employer reply rates and time to first reply",
+          "What an employer's or ATS's application form asks"
+        ],
+        "websiteURL": "https://haystackapp.io/mcp-server",
+        "supportURL": "https://haystackapp.io/mcp-server",
+        "privacyPolicyURL": "https://haystackapp.io/privacy-policy",
+        "termsOfServiceURL": "https://haystackapp.io/terms-conditions",
+        "defaultPrompt": [
+          "Find remote data analyst jobs in the US posted this week",
+          "Which jobs in London say no experience is needed?",
+          "Does Monzo reply to job applications, and how fast?"
+        ],
+        "logo": "./assets/logo.png"
+      },
+      "onboardingSkill": "./skills/find-jobs/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Search remote jobs by role and country",
+              "prompt": "Find remote data analyst jobs in the US posted this week.",
+              "tools_triggered": "search_jobs",
+              "expected_behavior": "Lists live remote data analyst jobs in the United States, newest first, each with title, employer, location and its haystackapp.io link; jobs with an Auto Apply link say Haystack's AI agent can apply."
+            },
+            {
+              "description": "Search with an advert filter and a city",
+              "prompt": "Which jobs in London say no experience is needed?",
+              "tools_triggered": "search_jobs",
+              "expected_behavior": "Calls search_jobs with city London and no_experience true, and lists jobs whose adverts say no experience is needed, each with its link."
+            },
+            {
+              "description": "Employer reply facts",
+              "prompt": "Does Monzo reply to job applications, and how fast?",
+              "tools_triggered": "employer_facts",
+              "expected_behavior": "Reports Monzo's live roles, the share of Haystack's applications that got a reply and the median days to the first reply, with the number of applications measured."
+            },
+            {
+              "description": "Application system facts",
+              "prompt": "What does a Greenhouse job application usually ask?",
+              "tools_triggered": "application_system_facts",
+              "expected_behavior": "Gives the typical number of form fields on Greenhouse, the questions asked most, and how fast employers on Greenhouse reply, from Haystack's applications."
+            },
+            {
+              "description": "Search then open one job",
+              "prompt": "Find software engineer jobs in Toronto and tell me more about the first one.",
+              "tools_triggered": "search_jobs, get_job",
+              "expected_behavior": "Lists software engineer jobs in Toronto, then calls get_job for the first result and summarises its employer, location, pay when known, work mode, skills and description, with its link."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated weather question",
+              "prompt": "What's the weather in London tomorrow?"
+            },
+            {
+              "description": "Unrelated writing task",
+              "prompt": "Write a short poem about autumn."
+            },
+            {
+              "description": "General knowledge question",
+              "prompt": "What is the capital of Australia?"
+            }
+          ]
+        }
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "First release: live job search, job details, employer reply facts and application system facts."
+      }
+    }
+  }
+}

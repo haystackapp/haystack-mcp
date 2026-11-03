@@ -89,6 +89,10 @@ Setup steps for each assistant: [haystackapp.io/mcp-server](https://haystackapp.
 
 The public server at `/mcp` never asks you to sign in and reads only public job data. Haystack logs which tool was called and a scrambled form of the calling address, to stop abuse. The account server at `/mcp/account` sees your own Haystack account only after you sign in and press Allow.
 
+## Plugin
+
+This repository is also an [Agent Plugin](https://agent-plugins.org) (`plugin.json`, `mcp.json`, `skills/find-jobs/SKILL.md`) for Cursor Directory and the ChatGPT plugin directory.
+
 ## Registry
 
 Listed in the Official MCP Registry as `io.haystackapp/jobs` (public) and `io.haystackapp/auto-apply` (signed in). This repository holds documentation only; the server runs at haystackapp.io.
