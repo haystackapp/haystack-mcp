@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.haystackapp/auto-apply",
+  "title": "Haystack Auto Apply",
+  "description": "See your job matches and have Haystack's AI agent apply to the ones you pick. Sign in with Haystack.",
+  "version": "1.0.0",
+  "websiteUrl": "https://haystackapp.io/mcp-server",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://haystackapp.io/mcp/account"
+    }
+  ]
+}
