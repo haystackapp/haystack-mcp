@@ -3,7 +3,7 @@
   "mcpServers": {
     "haystack": {
       "type": "streamable-http",
-      "url": "https://haystackapp.io/mcp"
+      "url": "https://haystackapp.io/mcp?client=chatgpt"
     }
   }
 }
