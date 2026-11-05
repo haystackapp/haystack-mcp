@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "haystack-jobs",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Search live jobs from employers' own careers sites in plain English, and see which employers reply to applications and how fast.",
   "author": {
     "name": "Haystack",
